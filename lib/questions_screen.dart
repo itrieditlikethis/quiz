@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class QuestionsScreen extends StatelessWidget {
-  const QuestionsScreen({super.key});
+  const QuestionsScreen(this.backToStart, {super.key});
+
+  final void Function(String) backToStart;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class QuestionsScreen extends StatelessWidget {
             ],
           ),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () => backToStart("start_screen"),
             child: Text("View results"),
           ),
         ],
