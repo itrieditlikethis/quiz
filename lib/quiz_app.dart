@@ -13,30 +13,21 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  List<String> selectedAnswers = [];
-  late String activeScreen;
-  Widget? nextScreenWidget;
-
-  @override
-  void initState() {
-    activeScreen = "start-screen";
-    nextScreenWidget = StartScreen(changeScreenState);
-    super.initState();
-  }
+  final List<String> _selectedAnswers = [];
+  String _activeScreen = "start-screen";
 
   void changeScreenState(String nextScreen) {
     setState(() {
-      activeScreen = nextScreen;
+      _activeScreen = nextScreen;
     });
   }
 
   void selectAnswer(String answer) {
-    selectedAnswers.add(answer);
+    _selectedAnswers.add(answer);
 
-    if (selectedAnswers.length == questions.length) {
-      print(selectedAnswers);
+    if (_selectedAnswers.length == questions.length) {
       setState(() {
-        activeScreen = 'start-screen';
+        _activeScreen = 'start-screen';
       });
     }
   }
@@ -44,7 +35,7 @@ class _QuizAppState extends State<QuizApp> {
   @override
   Widget build(BuildContext context) {
     Widget setScreen() {
-      switch (activeScreen) {
+      switch (_activeScreen) {
         case "start-screen":
           return StartScreen(changeScreenState);
         case "questions-screen":
@@ -57,7 +48,7 @@ class _QuizAppState extends State<QuizApp> {
     return MaterialApp(
       home: Scaffold(
         body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: Colors.yellow,
           ),
           child: setScreen(),

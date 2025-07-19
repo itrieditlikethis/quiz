@@ -15,7 +15,7 @@ class AnswerButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: onSelectQuestion,
         style: ElevatedButton.styleFrom(
-          padding: EdgeInsets.only(
+          padding: const EdgeInsets.only(
             left: 30,
             right: 30,
             top: 15,

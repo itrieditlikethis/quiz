@@ -12,19 +12,19 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-  var currentQuestionIndex = 0;
+  var _currentQuestionIndex = 0;
 
-  void answerQuestion(String selectedAnswer) {
+  void _answerQuestion(String selectedAnswer) {
     widget.selectAnswer(selectedAnswer);
 
     setState(() {
-      currentQuestionIndex++;
+      _currentQuestionIndex++;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final currentQuestion = questions[currentQuestionIndex];
+    final currentQuestion = questions[_currentQuestionIndex];
 
     return Center(
       child: Padding(
@@ -36,7 +36,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           children: [
             Text(
               currentQuestion.text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 54,
               ),
               textAlign: TextAlign.center,
@@ -44,7 +44,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ...currentQuestion.shuffledAnswers.map((answer) {
               return AnswerButton(
                 answerText: answer,
-                onSelectQuestion: () => answerQuestion(answer),
+                onSelectQuestion: () => _answerQuestion(answer),
               );
             }),
           ],
