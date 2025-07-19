@@ -13,7 +13,12 @@ class StartScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         spacing: 30,
         children: [
-          const Text('start screen'),
+          const Text(
+            'start screen',
+            style: TextStyle(
+              fontSize: 80,
+            ),
+          ),
           OutlinedButton.icon(
             onPressed: () => startQuiz("questions_screen"),
             style: OutlinedButton.styleFrom(
@@ -29,11 +34,12 @@ class StartScreen extends StatelessWidget {
             icon: Icon(
               Icons.play_arrow_rounded,
               color: Colors.yellow,
+              size: 50.0,
             ),
             label: const Text(
               'Start',
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 36,
               ),
             ),
           ),
