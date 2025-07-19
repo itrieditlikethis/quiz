@@ -20,7 +20,7 @@ class StartScreen extends StatelessWidget {
             ),
           ),
           OutlinedButton.icon(
-            onPressed: () => startQuiz("questions_screen"),
+            onPressed: () => startQuiz("questions-screen"),
             style: OutlinedButton.styleFrom(
               padding: EdgeInsets.only(
                 left: 30,

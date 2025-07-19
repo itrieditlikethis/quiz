@@ -4,16 +4,16 @@ class AnswerButton extends StatelessWidget {
   const AnswerButton({
     super.key,
     required this.answerText,
-    required this.onSelect,
+    required this.onSelectQuestion,
   });
 
   final String answerText;
-  final void Function() onSelect;
+  final void Function() onSelectQuestion;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: onSelect,
+        onPressed: onSelectQuestion,
         style: ElevatedButton.styleFrom(
           padding: EdgeInsets.only(
             left: 30,
