@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/data/questions_local.dart';
+import 'package:quiz/quiz_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({super.key, required this.listOfAnswers});
 
   final List<String> listOfAnswers;
+
+  List<Map<String, Object>> getQuizResults() {
+    List<Map<String, Object>> listOfResults = [];
+
+    for (var i = 0; i < listOfAnswers.length; i++) {
+      listOfResults.add({
+        "question_index": i + 1,
+        "question": questions[i].text,
+        "right_answer": questions[i].answers[0],
+        "user_answer": listOfAnswers[i],
+        "result": questions[i].answers[0] == listOfAnswers[i],
+      });
+    }
+
+    return listOfResults;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,58 +33,8 @@ class ResultsScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ...listOfAnswers.map((answer) {
-              final idx = listOfAnswers.indexOf(answer);
-
-              if (questions[idx].answers[0] == answer) {
-                return Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      color: Colors.black87,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Text(
-                      answer,
-                      style: TextStyle(color: Colors.white),
-                    ));
-              } else {
-                return Container(
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: Colors.black87,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Column(
-                    spacing: 5,
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        spacing: 10,
-                        children: [
-                          Icon(
-                            Icons.check_circle_outline,
-                            color: Colors.lightGreen,
-                            size: 36,
-                          ),
-                          Text(
-                            questions[idx].answers[0],
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 36.0,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Text(
-                        answer,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                );
-              }
-            })
+            Text('X righ answers from Y'),
+            QuizSummary(resultsData: getQuizResults()),
           ],
         ),
       ),
