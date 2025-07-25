@@ -25,6 +25,10 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getQuizResults();
+    final numOfQuestions = questions.length;
+    final int numOfRightAnswers =
+        summaryData.where((data) => data["result"] as bool).length;
     return Center(
       child: Padding(
         padding: EdgeInsets.all(40),
@@ -33,8 +37,19 @@ class ResultsScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('X righ answers from Y'),
-            QuizSummary(resultsData: getQuizResults()),
+            Container(
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.black87,
+              ),
+              child: Text(
+                '$numOfRightAnswers righ answers from $numOfQuestions',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 34, color: Colors.white),
+              ),
+            ),
+            QuizSummary(resultsData: summaryData),
           ],
         ),
       ),

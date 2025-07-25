@@ -7,27 +7,42 @@ class QuizSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ...resultsData.map((data) {
-          return Row(
-            children: [
-              Text((data["question_index"] as int).toString()),
-              Expanded(
-                child: Column(
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        spacing: 25,
+        children: resultsData.map((data) {
+          return Container(
+            padding: EdgeInsets.all(15),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: data["result"] as bool ? Colors.green : Colors.pink),
+            child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    Text('${data["question"]}'),
-                    Text('${data["right_answer"]}'),
-                    if (data["right_answer"] != data["user_answer"])
-                      Text('${data["user_answer"]}'),
-                    Text('$data["result"]'),
+                    Text((data["question_index"] as int).toString()),
+                    Expanded(
+                      child: Text(
+                        data["question"] as String,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 34,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ],
+                Text(data["right_answer"] as String),
+                if (data["right_answer"] != data["user_answer"])
+                  Text(data["user_answer"] as String),
+                Text(data["result"].toString()),
+              ],
+            ),
           );
-        })
-      ],
+        }).toList(),
+      ),
     );
   }
 }
