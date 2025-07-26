@@ -3,9 +3,14 @@ import 'package:quiz/data/questions_local.dart';
 import 'package:quiz/quiz_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
-  const ResultsScreen({super.key, required this.listOfAnswers});
+  const ResultsScreen({
+    super.key,
+    required this.listOfAnswers,
+    required this.onBackToStartScreen,
+  });
 
   final List<String> listOfAnswers;
+  final void Function(String) onBackToStartScreen;
 
   List<Map<String, Object>> getQuizResults() {
     List<Map<String, Object>> listOfResults = [];
@@ -23,6 +28,11 @@ class ResultsScreen extends StatelessWidget {
     return listOfResults;
   }
 
+  void endQuizAndRestart(String startScreen) {
+    listOfAnswers.clear();
+    onBackToStartScreen(startScreen);
+  }
+
   @override
   Widget build(BuildContext context) {
     final summaryData = getQuizResults();
@@ -35,9 +45,10 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           spacing: 20,
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              width: double.infinity,
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -50,6 +61,16 @@ class ResultsScreen extends StatelessWidget {
               ),
             ),
             QuizSummary(resultsData: summaryData),
+            OutlinedButton(
+              onPressed: () => endQuizAndRestart("start-screen"),
+              style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.black87,
+              ),
+              child: Text(
+                'To main screen',
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            )
           ],
         ),
       ),

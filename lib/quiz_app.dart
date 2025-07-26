@@ -42,7 +42,10 @@ class _QuizAppState extends State<QuizApp> {
         case "questions-screen":
           return QuestionsScreen(selectAnswer);
         case "results-screen":
-          return ResultsScreen(listOfAnswers: _listOfAnswers);
+          return ResultsScreen(
+            listOfAnswers: _listOfAnswers,
+            onBackToStartScreen: changeScreenState,
+          );
         default:
           return StartScreen(changeScreenState);
       }
