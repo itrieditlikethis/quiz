@@ -17,13 +17,23 @@ class QuizSummary extends StatelessWidget {
               padding: EdgeInsets.all(15),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: data["result"] as bool ? Colors.green : Colors.pink),
+                  color:
+                      data["result"] as bool ? Colors.green : Colors.pink[400]),
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.start,
+                spacing: 10,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: 10,
                     children: [
-                      Text((data["question_index"] as int).toString()),
+                      Text(
+                        (data["question_index"] as int).toString(),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 34,
+                        ),
+                      ),
                       Expanded(
                         child: Text(
                           data["question"] as String,
@@ -35,10 +45,52 @@ class QuizSummary extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(data["right_answer"] as String),
-                  if (data["right_answer"] != data["user_answer"])
-                    Text(data["user_answer"] as String),
-                  Text(data["result"].toString()),
+                  Row(
+                    spacing: 10,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Icon(
+                          Icons.check,
+                          color: Colors.green,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          data["right_answer"] as String,
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (data["result"] as bool == false)
+                    Row(
+                      spacing: 10,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.red,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            data["user_answer"] as String,
+                            softWrap: true,
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
                 ],
               ),
             );

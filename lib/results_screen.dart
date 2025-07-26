@@ -61,12 +61,17 @@ class ResultsScreen extends StatelessWidget {
               ),
             ),
             QuizSummary(resultsData: summaryData),
-            OutlinedButton(
+            OutlinedButton.icon(
               onPressed: () => endQuizAndRestart("start-screen"),
               style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.black87,
               ),
-              child: Text(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 20,
+              ),
+              label: Text(
                 'To main screen',
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
