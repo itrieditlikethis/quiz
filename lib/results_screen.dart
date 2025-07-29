@@ -12,7 +12,7 @@ class ResultsScreen extends StatelessWidget {
   final List<String> listOfAnswers;
   final void Function(String) onBackToStartScreen;
 
-  List<Map<String, Object>> getQuizResults() {
+  List<Map<String, Object>> get quizResults {
     List<Map<String, Object>> listOfResults = [];
 
     for (var i = 0; i < listOfAnswers.length; i++) {
@@ -35,7 +35,7 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final summaryData = getQuizResults();
+    final summaryData = quizResults;
     final numOfQuestions = questions.length;
     final int numOfRightAnswers =
         summaryData.where((data) => data["result"] as bool).length;
