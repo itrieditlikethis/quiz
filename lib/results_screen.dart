@@ -10,7 +10,7 @@ class ResultsScreen extends StatelessWidget {
   });
 
   final List<String> listOfAnswers;
-  final void Function(String) onBackToStartScreen;
+  final void Function() onBackToStartScreen;
 
   List<Map<String, Object>> get quizResults {
     List<Map<String, Object>> listOfResults = [];
@@ -26,11 +26,6 @@ class ResultsScreen extends StatelessWidget {
     }
 
     return listOfResults;
-  }
-
-  void endQuizAndRestart(String startScreen) {
-    listOfAnswers.clear();
-    onBackToStartScreen(startScreen);
   }
 
   @override
@@ -62,7 +57,7 @@ class ResultsScreen extends StatelessWidget {
             ),
             QuizSummary(resultsData: summaryData),
             OutlinedButton.icon(
-              onPressed: () => endQuizAndRestart("start-screen"),
+              onPressed: onBackToStartScreen,
               style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.black87,
               ),

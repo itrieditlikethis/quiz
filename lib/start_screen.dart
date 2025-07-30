@@ -14,9 +14,9 @@ class StartScreen extends StatelessWidget {
         spacing: 30,
         children: [
           const Text(
-            'start screen',
+            'Quiz',
             style: TextStyle(
-              fontSize: 80,
+              fontSize: 100,
             ),
           ),
           OutlinedButton.icon(

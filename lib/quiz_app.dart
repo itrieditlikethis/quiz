@@ -33,6 +33,11 @@ class _QuizAppState extends State<QuizApp> {
     }
   }
 
+  void endQuizAndRestart() {
+    _listOfAnswers.clear();
+    changeScreenState("start-screen");
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget setScreen() {
@@ -44,7 +49,7 @@ class _QuizAppState extends State<QuizApp> {
         case "results-screen":
           return ResultsScreen(
             listOfAnswers: _listOfAnswers,
-            onBackToStartScreen: changeScreenState,
+            onBackToStartScreen: endQuizAndRestart,
           );
         default:
           return StartScreen(changeScreenState);
